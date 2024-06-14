@@ -5,13 +5,14 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.Upsert
 import com.example.todoapp.entity.Task
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
-    @Insert
-    suspend fun insertTask(task: Task)
+    @Upsert
+    suspend fun upsertTask(task: Task)
 
     @Query("SELECT * FROM Task")
     fun getAllTasks(): Flow<List<Task>>
